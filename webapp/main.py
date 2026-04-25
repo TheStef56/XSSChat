@@ -146,7 +146,7 @@ def send_message():
     return "ok"
 
 @app.route("/getMessages", methods=["GET"])
-def gm():
+def get_message():
     return db.get_messages()
 
 

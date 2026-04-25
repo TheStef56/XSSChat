@@ -1,4 +1,4 @@
-let messages = undefined;
+let messages = [];
 window.onload = () => {
     document.getElementById("message").addEventListener("keypress", (event) => {
         if (event.key === "Enter") {
@@ -66,8 +66,9 @@ function getMessages() {
     fetch("http://localhost/getMessages").then(data => {
         data.json().then(json => {
             if (messages ==  undefined || messages != json) {
-                messages = json;
                 const container = document.getElementById("messages-container");
+                let old = messages;
+                messages = json;
                 container.replaceChildren();
                 json.forEach(entry => {
                     let un = entry[2];
@@ -77,6 +78,9 @@ function getMessages() {
                     let msg = createMessage(un, dt, cn, msgClass);
                     container.appendChild(msg);
                 });
+                if (messages.length != old.length) {
+                    container.scrollTo(0, 999999999999999);
+                }
             }
         })
     })

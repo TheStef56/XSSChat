@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS Chat Vulnerable Login</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+                if (window.location.search.includes("?err=1")) {
+                    alert("Username already exists!");
+                } else if (window.location.search.includes("?err=2")) {
+                    alert("Email already exists!");
+                } else if (window.location.search.includes("?err=3")) {
+                    alert("Email and username already exist!");
+                }
+            }, 100);
+        })
+    </script>
+</head>
+<body>
+    <header>
+        <h1>XSS Chat Vulnerable Registration</h1>
+    </header>
+    <main>
+    <form action="/registerForm", method="POST", id="login-form">
+            <p>Email</p>
+            <input type="text", id="email", name="email", required="true">
+            <p>Username</p>
+            <input type="text", id="username", name="username", required="true">
+            <p>Password</p>
+            <input type="password", id="password", name="password", required="true">
+            <div id="actionbar">
+                <div class="spacer"></div>
+                <button type="submit" id="submit">Register</button>
+                <a href="/">login</a>
+            </div>
+        </form>
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>

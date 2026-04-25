@@ -1,0 +1,218 @@
+:root{
+    --bg-color: #77A2D9;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    text-shadow: 0px 0px 1px black;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+
+header {
+    height: 40px;
+    background-color: var(--bg-color);
+    text-align: center;
+    color: black;
+    font-weight: 800;
+}
+
+main {
+    background-color: rgba(0,0,0, 0.5);
+    height: calc(100vh - 100px);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+footer {
+    min-height: 40px;
+    height: fit-content;
+    background-color: var(--bg-color);
+    padding: 10px;
+}
+
+#preface {
+    text-align: center;
+    margin-top: 10px;
+    color: black;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 70vw;
+}
+
+input {
+    margin: 5px;
+    border: 1px solid black;
+}
+
+#login-form {
+    border-radius: 5px;
+    min-width: 200px;
+    width: fit-content;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--bg-color);
+    margin-bottom: 20%;
+    margin-top: 50px;
+    box-shadow: 1px 1px 15px 5px black;
+}
+
+/* PROFILE ------------------------------------------ */
+
+#profile-container {
+    border-radius: 5px;
+    width: 30vw;
+    height: 50vh;
+    min-width: fit-content;
+    min-height: fit-content;
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--bg-color);
+    margin-top: 50px;
+    box-shadow: 1px 1px 15px 5px black;
+}
+
+#profile-aligner {
+    display: flex;
+    flex-direction: column;
+    vertical-align: center;
+    justify-content: space-evenly;
+    align-items: left;
+    width: fit-content;
+    height: 100%;
+    text-align: left;
+}
+
+#change-password-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ACTIONBAR ------------------------------------------ */
+
+#action-container {
+    top: 8px;
+    left: calc(95vw - 30px);
+    position: absolute;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 5px;
+}
+
+#actionbar {
+    height: fit-content;
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#actionbar button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#actionbar a {
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+/* MESSAGES --------------------------------------------- */
+
+#chat-form {
+    border-radius: 5px;
+    width: fit-content;
+    max-width: 60vw;
+    min-height: 70px;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--bg-color);
+    margin-top: 50px;
+    box-shadow: 1px 1px 15px 5px black;
+}
+
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+}
+
+
+#messages-container {
+    overflow-y: scroll;
+    margin: 20px;
+    border-radius: 5px;
+    min-width: 20vw;
+    width: fit-content;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--bg-color);
+    box-shadow: 1px 1px 15px 5px black;
+}
+
+#data-entry{
+    margin: 20px;
+}
+
+.message {
+    margin: 5px;
+    border: solid black 1px;
+    border-radius: 3px;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    max-width : 300px;
+    height : fit-content;
+    flex-direction: column;
+}
+
+.atom {
+    margin: 2px;
+    max-width: 300px;
+    overflow-wrap: break-word;
+}

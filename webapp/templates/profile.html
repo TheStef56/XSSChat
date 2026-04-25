@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS Chat Vulnerable Login</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+    <header>
+        <h1>XSS Chat Vulnerable Profile</h1>
+        <div id="action-container">
+            <form action="/chat" method="get" class="action-form">
+                <button type="submit">Chat</button>
+            </form>
+            <form action="/logout" method="get" class="action-form">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </header>
+    <main>
+        <div id="profile-container">
+            <div id="profile-aligner">
+                <h3>Email:</h3>
+                <p>{{ email }}</p>
+                <div class="spacer"></div>
+                <h3>Username:</h3>
+                <p>{{ username }}</p>
+                <div class="spacer"></div>
+                <h3>Password:</h3>
+                <p>{{ password }}</p>
+                <div class="spacer"></div>
+                <form action="/changePassword" method="POST" id="change-password-form">
+                    <h3>Change Password</h3>
+                    <input type="text" name="password" id="password">
+                    <button type="submit">Change</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>

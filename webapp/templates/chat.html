@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS Vulnerable Chat</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script src="/static/js/index.js"></script>
+    <script>
+        userName="{{ username|safe}}"; 
+    </script>
+</head>
+<body>
+    <header>
+        <h1>XSS Vulnerable Chat</h1>
+        <div id="action-container">
+            <form action="/profile" method="get" class="action-form">
+                <button type="submit">Profile</button>
+            </form>
+            <form action="/logout" method="get" class="action-form">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </header>
+    <main>
+        <p>{{ username|safe }}</p>
+        <div id="container">
+            <h2>Messages:</h2>
+            <div id="messages-container">
+                {{ messages|safe }}
+            </div>
+        </div>
+        <div id="chat-form">
+            <input type="text", id="message", required="true">
+            <button type="button" id="sendbutton" onclick="SendMessage();">Send</button>
+        </div>
+        
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>

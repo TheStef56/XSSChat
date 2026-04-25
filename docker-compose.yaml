@@ -1,0 +1,18 @@
+services:
+    mysql:
+        build: ./database
+        container_name: mysql
+        restart: always
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./database/database.sql:/docker-entrypoint-initdb.d/database.sql
+
+    webapp:
+        build: ./webapp
+        container_name: webapp
+        restart: always
+        depends_on:
+            - mysql
+        ports:
+            - "80:80"

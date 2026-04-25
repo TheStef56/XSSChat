@@ -28,28 +28,38 @@ function SendMessage() {
     });
 }
 
-function createMessage(userName, date, content) {
-    let msgdiv = document.createElement("div");
-    let un = document.createElement("p");
-    let dt = document.createElement("p");
-    let cn = document.createElement("p");
+function createMessage(userName, date, content, msgClass) {
+    let msgwrapper = document.createElement("div");
+    let msgdiv     = document.createElement("div");
+    let header     = document.createElement("div");
+    let un         = document.createElement("p");
+    let dt         = document.createElement("p");
+    let cn         = document.createElement("p");
 
+    date = new Date(date);
+    const pad = (n) => String(n).padStart(2, '0');
+    date = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} `
+  + `${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getSeconds())}`;
 
     un.innerHTML = userName;
     dt.innerHTML = date;
     cn.innerHTML = content;
 
+    header.className = "message-header";
     msgdiv.className = "message";
+    msgwrapper.className = "message-wrapper "
+    msgwrapper.className += msgClass
 
-    
     un.className = "atom";
     dt.className = "atom";
     cn.className = "atom";
 
-    msgdiv.appendChild(un);
-    msgdiv.appendChild(dt);
+    header.appendChild(un);
+    header.appendChild(dt);
+    msgdiv.appendChild(header);
     msgdiv.appendChild(cn);
-    return msgdiv;
+    msgwrapper.appendChild(msgdiv);
+    return msgwrapper;
 }
 
 function getMessages() {
@@ -63,7 +73,8 @@ function getMessages() {
                     let un = entry[2];
                     let cn = entry[3];
                     let dt = entry[4];
-                    let msg = createMessage(un, dt, cn);
+                    let msgClass = userName == un ? "message-mine" : "message-yours";
+                    let msg = createMessage(un, dt, cn, msgClass);
                     container.appendChild(msg);
                 });
             }

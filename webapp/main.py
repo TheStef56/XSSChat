@@ -18,7 +18,7 @@ def logged_in():
     return user
 
 def nuke_token(token):
-    session["token"] = None
+    session.clear()
     db.delete_token(token)
 
 def generate_messages_template():
@@ -28,14 +28,16 @@ def generate_messages_template():
         username = entry[2]
         content = entry[3]
         date = entry[4]
-        template = f"""<div class="message">
-    <div class="msg-header">
-        <p class="atom">{username}</p>
-    </div>
-    <div>
-        <p class="atom">{date}</p>
-    </div>
-        <p class="atom">{content}</p></div>"""
+        msg_class = "message-mine" if session.get("username") == username else "message-yours"
+        template = f"""<div class="message-wrapper {msg_class}">
+                            <div class="message">
+                                <div class="message-header">
+                                    <p class="atom">{username}</p>
+                                    <p class="atom">{date}</p>
+                                </div>
+                                <p class="atom">{content}</p>
+                            </div>
+                        </div>"""
         result += template
     
     return result
@@ -69,6 +71,7 @@ def login_form():
     if user:
         token = db.set_token(username, password)
         session["token"] = token
+        session["username"] = username
         return redirect("/chat")
     return abort(401)    
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XSS Vulnerable Chat</title>
     <link rel="stylesheet" href="/static/css/index.css">
-    <script src="/static/js/index.js"></script>
+    <script src="/static/js/chat.js"></script>
     <script>
         userName="{{ username|safe}}"; 
     </script>
@@ -27,7 +27,7 @@
         <div id="container">
             <h2>Messages:</h2>
             <div id="messages-container">
-                {{ messages|safe }}
+                    {{ messages|safe }}
             </div>
         </div>
         <div id="chat-form">

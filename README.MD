@@ -2,7 +2,7 @@
 
 ## What is it?
 
- **XSSChat** is a web chat written in **Python3, HTML, CSS and Javascript*** (with Flask as webserver/templating engine) with a persistent **SQL** database. Everything is portable and with no dependencies thanks to **Docker** (except Docker itself). It's purpose is showcasing the consequences of **Cross-Site-Scripting** vulnerabilities (XSS) that could be present in any Web Application simply because of little mistakes during configuration. Some pictures of the webapp:
+ **XSSChat** is a web chat written in **Python3, HTML, CSS and Javascript** (with Flask as webserver/templating engine) with a persistent **SQL** database. Everything is portable and with no dependencies thanks to **Docker** (except Docker itself). It's purpose is showcasing the consequences of **Cross-Site-Scripting** vulnerabilities (XSS) that could be present in any Web Application simply because of little mistakes during configuration. Some pictures of the webapp:
 
 ![](/assets/gallery1.png)
 ![](/assets/gallery2.png)
@@ -34,6 +34,20 @@ If we look at the CAPEC-MITRE classification (**CAPEC-63**), XSS is tipically de
 
 and can be usually performed with a **LOW** to **MEDIUM** skill level, depending on what the attacker wants to achieve.
 
+## Stack used:
+
+| **Level** | **Component**                                    | **Role**                                                                                                                                                                                                             |
+|-----------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 7         | Flask (ver. 3.1.1)                               | Python's library to host a webserver, deliver the content and use the Jinja2 templating Engine, and all the other features.<br>It's also the vector of attack (**Vulnerability**), in this case, for unescaped content. |
+| 6         | Python 3.10                                      | Python3 interpreter that runs the Flask server for the webapp                                                                                                                                                        |
+| 5         | Oracle Linx (Guest OS, db container)             | Docker's image OS based environment for the database container, with its filesystem, binaries, etc...                                                                                                                |
+| 4         | Alpine Linux (ver 3.10, Guest OS, app container) | Docker's image OS based environment for the app container, with its filesystem, binaries, etc...                                                                                                                     |
+| 3         | Docker Engine (ver. 27.5.1)                      | Docker's environment, that creates a sandbox with namespaces, cgroups, etc...                                                                                                                                        |
+| 2         | Host kernel (6.8.0-107-generic)                  | Shared kernel: executes syscalls, talks to the hardware                                                                                                                                                              |
+| 1         | Host OS (Ubuntu 22.04.4 LTS x86_65)              | Host machine's OS                                                                                                                                                                                                    |
+| 0         | Bare Metal                                       | Real hardware: CPU, RAM, ssd, network                                                                                                                                                                                |
+
+
 ## What are the consequences?
 
 Usually, XSS can lead to:
@@ -50,7 +64,7 @@ And we will be able to see in this implementation that the attacker (any user po
 
 - Even render the chat **unusable**, by forcefully redirecting the user instantly to any other webpage.
 
-## CVE Score:
+## CVSS Score:
 
 Based on the fact that:
  - The attack vector is the **Network**.
